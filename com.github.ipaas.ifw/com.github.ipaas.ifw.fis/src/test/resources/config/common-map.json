@@ -1,0 +1,57 @@
+{
+    "res": {
+        "common:page/layout.ftl": {
+            "uri": "/template/common/page/layout.ftl",
+            "type": "ftl",
+            "extras": {
+                "isPage": true
+            }
+        },
+        "common:static/mod.js": {
+            "uri": "/static/common/mod_b4c8202.js",
+            "type": "js"
+        },
+        "common:widget/nav/nav.css": {
+            "uri": "/static/common/widget/nav/nav_df047eb.css",
+            "type": "css",
+            "pkg": "common:p0"
+        },
+        "common:widget/nav/nav.js": {
+            "uri": "/static/common/widget/nav/nav_aef3f52.js",
+            "type": "js",
+            "deps": [
+                "common:widget/nav/nav.css"
+            ],
+            "pkg": "common:p1"
+        },
+        "common:widget/sidebar/sidebar.async.js": {
+            "uri": "/static/common/widget/sidebar/sidebar.async_449e169.js",
+            "type": "js"
+        },
+        "common:widget/sidebar/sidebar.css": {
+            "uri": "/static/common/widget/sidebar/sidebar_5c2775c.css",
+            "type": "css",
+            "pkg": "common:p0"
+        }
+    },
+    "pkg": {
+        "common:p0": {
+            "uri": "/static/common/pkg/aio_2dcf798.css",
+            "type": "css",
+            "has": [
+                "common:widget/nav/nav.css",
+                "common:widget/sidebar/sidebar.css"
+            ]
+        },
+        "common:p1": {
+            "uri": "/static/common/pkg/aio_aef3f52.js",
+            "type": "js",
+            "has": [
+                "common:widget/nav/nav.js"
+            ],
+            "deps": [
+                "common:widget/nav/nav.css"
+            ]
+        }
+    }
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+         http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+         http://www.springframework.org/schema/context 
+         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+     
+     <!-- mqSendService -->
+     <bean id="mqSendService" class="com.github.ipaas.ifw.mq.activemq.FwMqSendService"  > 
+      		<!-- url语法: ','号分节点标记, ':'号节点分ip与端口标记 -->
+      		<property name="serverUrl"  value="localhost:61616"/> 
+      		<!-- 以下参数可选 -->
+      		<property name="serviceId" value="mqSendService"/>
+      		<property name="connectTimeout" value="1000"/>
+      		<property name="operateTimeout" value="5000"/>
+      		<property name="maximumConnections" value="5" />
+      		<property name="maximumActive" value="500"/> 
+      		<property name="idleTimeout" value="60000"/> 
+     </bean>
+     
+     <!-- mqListenerService -->
+     <bean id="mqListenerService" class="com.github.ipaas.ifw.mq.activemq.FwMqListenService"> 
+      		<!-- url语法: ','号分节点标记, ':'号节点分ip与端口标记 -->
+      		<property name="serverUrl"  value="localhost:61616"/> 
+      		<!-- 以下参数可选 -->
+      		<property name="serviceId" value="mqListenerService"/>
+      		<property name="connectTimeout" value="1000" />
+      		<property name="operateTimeout" value="5000" />
+      		<property name="listenThreadPoolMaxSize" value="100" />
+     </bean>
+     
+     <!-- spy memcache客户端 -->
+     <bean id="fwSpyDirectMemcachedService" class="com.github.ipaas.ifw.cache.distributed.memcached.spy.FwSpyDirectMemcachedService">
+     		<!-- url语法: ','号分组标记, ';'号分节点标记, ':'号节点分ip与端口标记 -->
+     		<property name="serverUrl"  value="localhost:11211"/>
+     		<!-- 以下参数可选 -->
+     		<property name="serviceId" value="fwSpyDirectMemcachedService"/>
+     		<property name="connectTimeout" value="1000" />
+     		<property name="operateTimeout" value="5000" /> 
+     </bean>
+     
+     <!-- OScache客户端 -->
+     <bean id="fwOSCacheService" class="com.github.ipaas.ifw.cache.local.FwOSCacheService" />
+     
+     <!-- ICE客户端 -->
+     <bean id="fwIceDirectComponentClientService" class="com.github.ipaas.ifw.component.client.ice.FwIceDirectComponentClientService"> 
+      		<!-- url语法: ';'号分节点标记, ':'号节点分ip与端口标记 -->
+      		<property name="serverUrl"  value="localhost:15212"/>
+      		<!-- 以下参数可选 -->
+      		<property name="serviceId" value="fwIceDirectComponentClientService"/>
+      		<property name="operateTimeout" value="5000"/>
+      		<property name="connections" value="30"/>
+      		<property name="config">
+      			<props>
+      				<prop key="Ice.MessageSizeMax">1024</prop>
+      				<prop key="Ice.ThreadPool.Client.Size">10</prop>
+      				<prop key="Ice.ThreadPool.Client.SizeMax">500</prop>
+	 	 			<prop key="Ice.ThreadPool.Client.SizeWarn">400</prop>
+	 	 			<!-- 连接超时时间，单位为毫秒，默认为1秒 -->
+	 	 			<prop key="Ice.Override.ConnectTimeout">1000</prop> 
+	 				<!-- 连接的生命周期，单位为秒，默认为60秒 -->
+	 				<prop key="Ice.ACM.Client">60</prop>
+	 	 			<prop key="Ice.TCP.RcvSize">65535</prop>
+	 				<prop key="Ice.TCP.SndSize">65535</prop> 
+      			</props> 
+      		</property>
+     </bean>
+      
+</beans>

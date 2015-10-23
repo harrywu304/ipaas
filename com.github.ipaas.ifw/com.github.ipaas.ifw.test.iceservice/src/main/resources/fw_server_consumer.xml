@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fw_server>
+	  
+	 <!-- mq consumer配置 -->
+	 <consumer_server>
+	 	<!-- appId对应的消息消费关系 -->
+	 	<fw_demo>
+		 	<!-- destination和MessageHandler的对应关系 -->
+		 	<!-- -->
+		 	<queue>
+		 		<que_demo>com.github.ipaas.demo.mq.TestMessageHandler</que_demo>
+		 		<que_demo2>com.github.ipaas.demo.mq.TestMessageHandlerSlow</que_demo2>
+		 	</queue>
+		 	 
+		 	<topic>
+		 		<top_demo>com.github.ipaas.demo.mq.TestMessageHandler</top_demo>
+		 	</topic>
+
+	 		 
+		 	<topic_durable>
+		 		<top_dr_demo>com.github.ipaas.demo.mq.TestMessageHandler</top_dr_demo>
+		 		<top_dr_demo2>com.github.ipaas.demo.mq.TestMessageHandlerSlow</top_dr_demo2>
+		 	</topic_durable>	
+		 	 
+	 	</fw_demo> 	
+	 </consumer_server>
+
+</fw_server>

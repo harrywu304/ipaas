@@ -1,0 +1,205 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.ipaas.ifw</groupId>
+	<artifactId>com.github.ipaas.ifw</artifactId>
+	<version>0.0.2</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<jackson_mapper_version>1.9.13</jackson_mapper_version>
+		<slf4j_version>1.6.4</slf4j_version>
+		<jmockit_version>0.999.4</jmockit_version>
+		<junit_version>4.10</junit_version>
+		<jsp_api_version>2.1</jsp_api_version>
+		<servlet_api_version>2.4</servlet_api_version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.packaging>bundle</project.packaging>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<!-- httpclient -->
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<!-- slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j_version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson_mapper_version}</version>
+		</dependency>
+
+		<!-- dom4j -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<!-- 测试工具类 -->
+		<dependency>
+			<groupId>mockit</groupId>
+			<artifactId>jmockit</artifactId>
+			<version>${jmockit_version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit_version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-core</artifactId>
+			<version>1.1</version>
+			<classifier>sources</classifier>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>2.3.7</version>
+					<extensions>true</extensions>
+					<configuration>
+						<instructions>
+							<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+							<Bundle-Name>${project.artifactId}</Bundle-Name>
+							<Bundle-Vendor>ifw</Bundle-Vendor>
+							<Import-Package>
+								!com.sun.jdmk.comm,
+								org.osgi.framework,
+								org.apache.log4j;provider=paxlogging,
+								<!-- org.apache.commons.logging;provider=paxlogging, -->
+								org.apache.log4j.helpers;resolution:=optional;provider=paxlogging,
+								org.apache.log4j.spi;resolution:=optional;provider=paxlogging,
+								org.slf4j;resolution:=optional;provider=paxlogging,
+								org.slf4j.impl;resolution:=optional;provider=paxlogging,
+								*;resolution:=optional
+							</Import-Package>
+						</instructions>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<version>2.8</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+
+			<!-- 使用jdk1.7 compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+				<version>3.0</version>
+			</plugin>
+
+			<!-- 将源码包发布到了Maven仓库 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- 将Javadoc包发布到Maven仓库 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.8</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+
+		</plugins>
+	</build>
+
+	<modules>
+		<module>com.github.ipaas.ifw.cache</module>
+		<module>com.github.ipaas.ifw.context.spring</module>
+		<module>com.github.ipaas.ifw.component</module>
+		<module>com.github.ipaas.ifw.core</module>
+		<module>com.github.ipaas.ifw.fis</module>
+		<module>com.github.ipaas.ifw.jdbc</module>
+		<module>com.github.ipaas.ifw.mq</module>
+		<module>com.github.ipaas.ifw.util</module>
+		<module>com.github.ipaas.ifw.unitest</module>
+
+		<module>com.github.ipaas.ifw.quartz</module>
+
+		<module>com.github.ipaas.ifw.server.ice</module>
+		<module>com.github.ipaas.ifw.server.mq.consumer</module>
+		<!-- <module>com.github.ipaas.ifw.demo</module> -->
+	</modules>
+
+	<distributionManagement>
+		<repository>
+			<id>my_nexus</id>
+			<name>release</name>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>my_nexus</id>
+			<name>snapshots</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+</project>

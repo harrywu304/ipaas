@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fw_server>
+	 
+	 <!-- 基础架构 组件服务器 ice组件的配置 -->
+	 <component_server>
+	 	<Ice.MessageSizeMax>1024</Ice.MessageSizeMax>
+	 	<Ice.ThreadPool.Server.Size>10</Ice.ThreadPool.Server.Size>
+	 	<Ice.ThreadPool.Server.SizeMax>500</Ice.ThreadPool.Server.SizeMax>
+	 	<Ice.ThreadPool.Server.SizeWarn>500</Ice.ThreadPool.Server.SizeWarn>
+	 	<Ice.TCP.RcvSize>65535</Ice.TCP.RcvSize>
+	 	<Ice.TCP.SndSize>65535</Ice.TCP.SndSize>
+	 	<server.lazy_load_classpath>dynLib</server.lazy_load_classpath>
+	 	<server.scan_interval>5</server.scan_interval>
+	 	<server.adapter_id>rpc_proxy_adapter</server.adapter_id>
+	 	<server.export_endpoint>default -p 15212</server.export_endpoint>
+	 	<server.access_control>false</server.access_control>
+	 	<!-- 可访问控制列表 多个配置以;号分隔 -->
+	 	<server.access_servers>192.168.1.35:false</server.access_servers>
+	 </component_server>
+	 
+	  
+
+</fw_server>

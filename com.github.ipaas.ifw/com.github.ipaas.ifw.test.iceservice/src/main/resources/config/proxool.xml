@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the proxool configuration can be embedded within your own application's. Anything outside the "proxool" tag is ignored. -->
+<something-else-entirely> 
+  <!-- appId fw_demo -->
+  <proxool>
+    <alias>fw_demo_m0</alias> 
+    <driver-url>jdbc:mysql://localhost:3306/test</driver-url>
+    <driver-class>com.mysql.jdbc.Driver</driver-class>
+    <driver-properties>
+      <property name="user" value="devuser"/>
+      <property name="password" value="devuser"/>
+      <property name="connectTimeout" value="1000"/>
+      <property name="useUnicode" value="true"/>
+      <property name="characterEncoding" value="utf-8"/>     
+      <property name="zeroDateTimeBehavior" value="convertToNull"/>      
+    </driver-properties>
+    <maximum-connection-count>10</maximum-connection-count>
+    <minimum-connection-count>3</minimum-connection-count>
+    <house-keeping-test-sql>select 0</house-keeping-test-sql>
+    <maximum-active-time>300000</maximum-active-time>
+    <maximum-connection-lifetime>300000</maximum-connection-lifetime>
+  </proxool>
+    
+  <proxool>
+    <alias>fw_demo_m0_s0</alias> 
+    <driver-url>jdbc:mysql://localhost:3306/test</driver-url>
+    <driver-class>com.mysql.jdbc.Driver</driver-class>
+    <driver-properties>
+      <property name="user" value="devuser"/>
+      <property name="password" value="devuser"/>
+      <property name="connectTimeout" value="1000"/>
+      <property name="useUnicode" value="true"/>
+      <property name="characterEncoding" value="utf-8"/>      
+      <property name="zeroDateTimeBehavior" value="convertToNull"/>   
+    </driver-properties>
+    <maximum-connection-count>10</maximum-connection-count>
+    <minimum-connection-count>3</minimum-connection-count>
+    <house-keeping-test-sql>select 0</house-keeping-test-sql>
+    <maximum-active-time>300000</maximum-active-time>
+    <maximum-connection-lifetime>300000</maximum-connection-lifetime>
+  </proxool>
+  
+	<!-- appId fw_demo1-->
+    <proxool>
+    <alias>fw_demo1_m0</alias> 
+    <driver-url>jdbc:mysql://localhost:3306/test</driver-url>
+    <driver-class>com.mysql.jdbc.Driver</driver-class>
+    <driver-properties>
+      <property name="user" value="devuser"/>
+      <property name="password" value="devuser"/>
+      <property name="connectTimeout" value="1000"/>
+      <property name="useUnicode" value="true"/>
+      <property name="characterEncoding" value="utf-8"/>     
+      <property name="zeroDateTimeBehavior" value="convertToNull"/>      
+    </driver-properties>
+    <maximum-connection-count>10</maximum-connection-count>
+    <minimum-connection-count>3</minimum-connection-count>
+    <house-keeping-test-sql>select 0</house-keeping-test-sql>
+    <maximum-active-time>300000</maximum-active-time>
+    <maximum-connection-lifetime>300000</maximum-connection-lifetime>
+  </proxool>
+  
+  <proxool>  
+    <alias>fw_demo1_m1</alias> 
+    <driver-url>jdbc:mysql://localhost:3306/test</driver-url>
+    <driver-class>com.mysql.jdbc.Driver</driver-class>
+    <driver-properties>
+      <property name="user" value="devuser"/>
+      <property name="password" value="devuser"/>
+      <property name="connectTimeout" value="1000"/>
+      <property name="useUnicode" value="true"/>
+      <property name="characterEncoding" value="utf-8"/>     
+      <property name="zeroDateTimeBehavior" value="convertToNull"/>      
+    </driver-properties>
+    <maximum-connection-count>10</maximum-connection-count>
+    <minimum-connection-count>3</minimum-connection-count>
+    <house-keeping-test-sql>select 0</house-keeping-test-sql>
+    <maximum-active-time>300000</maximum-active-time>
+    <maximum-connection-lifetime>300000</maximum-connection-lifetime>
+  </proxool>
+    
+  <proxool>
+    <alias>fw_demo1_m0_s0</alias> 
+    <driver-url>jdbc:mysql://localhost:3306/test</driver-url>
+    <driver-class>com.mysql.jdbc.Driver</driver-class>
+    <driver-properties>
+      <property name="user" value="devuser"/>
+      <property name="password" value="devuser"/>
+      <property name="connectTimeout" value="1000"/>
+      <property name="useUnicode" value="true"/>
+      <property name="characterEncoding" value="utf-8"/>      
+      <property name="zeroDateTimeBehavior" value="convertToNull"/>   
+    </driver-properties>
+    <maximum-connection-count>10</maximum-connection-count>
+    <minimum-connection-count>3</minimum-connection-count>
+    <house-keeping-test-sql>select 0</house-keeping-test-sql>
+    <maximum-active-time>300000</maximum-active-time>
+    <maximum-connection-lifetime>300000</maximum-connection-lifetime>
+  </proxool>
+  
+  <proxool>
+    <alias>fw_demo1_m1_s0</alias> 
+    <driver-url>jdbc:mysql://localhost:3306/test</driver-url>
+    <driver-class>com.mysql.jdbc.Driver</driver-class>
+    <driver-properties>
+      <property name="user" value="devuser"/>
+      <property name="password" value="devuser"/>
+      <property name="connectTimeout" value="1000"/>
+      <property name="useUnicode" value="true"/>
+      <property name="characterEncoding" value="utf-8"/>      
+      <property name="zeroDateTimeBehavior" value="convertToNull"/>   
+    </driver-properties>
+    <maximum-connection-count>10</maximum-connection-count>
+    <minimum-connection-count>3</minimum-connection-count>
+    <house-keeping-test-sql>select 0</house-keeping-test-sql>
+    <maximum-active-time>300000</maximum-active-time>
+    <maximum-connection-lifetime>300000</maximum-connection-lifetime>
+  </proxool>
+ 
+</something-else-entirely>

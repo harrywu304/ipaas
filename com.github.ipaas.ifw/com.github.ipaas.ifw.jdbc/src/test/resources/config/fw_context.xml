@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+         http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+         http://www.springframework.org/schema/context 
+         http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+	<!-- 数据库连接获取服务 -->
+	<!-- 每个数据库组配置一个 ，这组数据库里的所有库里的表都是一样的,例如下面为fw_demo数据库组 -->
+	<bean id="fw_demo_fwDirectDbConnectService" class="com.github.ipaas.ifw.jdbc.impl.FwDirectDbConnectService"
+		init-method="initializePlugin">
+		<!-- 数据库连接池配置，值为空默认查找 /proxool.xml -->
+		<property name="proxoolConfig" value="/config/proxool.xml" />
+		<!-- 注意：写节点配置是次序有关的，一旦配置，有数据写入了，结点间的次序就不能改变，否则就会出现找不到数据的情况 -->
+		<!-- 映射关系语法: ';'号分从库节点关系标记, ':'号节点主从库(master-slave)关系标记, ','号分数据库主从(master-slave)组标记 -->
+		<!-- 例子: m0:s0;s1;s2,m1:s0;s1,m2:s0;s1;s2 m0 s0 ..... 是proxool连接池别名 -->
+		<property name="dbServerMapping"
+			value="fw_demo_m0:fw_demo_m0_s0,fw_demo_m1:fw_demo_m1_s0:fw_demo_m1_s1" />
+		<!-- 数据库服务器分组, 组中节点定位算法: 取模(mod), 一致性哈希(consistent-hash) -->
+		<property name="itemLocateAlgorithm" value="consistent-hash" />
+	</bean>
+
+	<!-- 数据库访问服务 -->
+	<bean id="fw_demo_fwDirectDbAccessService" class="com.github.ipaas.ifw.jdbc.impl.FwDirectDbAccessService"
+		init-method="initializePlugin">
+		<!-- 设置扩展节点时的映射，格式为：fw_demo_m1:fw_demo_m0,fw_demo_m2:fw_demo_m0 -->
+		<!-- 此属性的作用为减少了增加某个数据库节点时对业务的影响，例如 fw_demo_m1:fw_demo_m0，说明 访问fw_demo_m1时如果没有数据，则访问fw_demo_m0。此属性可以不用配置 -->
+		<property name="scaleoutMapping" value="fw_demo_m1:fw_demo_m0" />
+		<!--配置引用的数据库连接服务 -->
+		<property name="dbConnectService" ref="fw_demo_fwDirectDbConnectService" />
+	</bean>
+
+
+</beans>
+

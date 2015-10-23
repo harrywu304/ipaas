@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<demo_user id="1" name="adminbj" address="beijing" content="content_beijing" loginTime="2011-01-01 00:00:00.0"/>
+	<demo_user id="2" name="adminsh" address="shanghai" content="content_shanghai" loginTime="2011-01-01 00:00:00.0"/>
+</dataset>

@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.ipaas.ifw</groupId>
+		<artifactId>com.github.ipaas.ifw</artifactId>
+		<version>0.0.2</version>
+	</parent>
+	<packaging>${project.packaging}</packaging>
+	<artifactId>com.github.ipaas.ifw.context.spring</artifactId>
+ 
+	<properties>
+		<spring.version>3.1.0.RELEASE</spring.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.github.ipaas.ifw</groupId>
+			<artifactId>com.github.ipaas.ifw.core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<instructions>
+						<Export-Package>com.github.ipaas.ifw.context.spring.*</Export-Package>
+						<Embed-Dependency>
+							spring-context,
+							spring-beans,
+							spring-core,
+							spring-aop,
+							spring-expression,
+							aopalliance,
+							xml-apis,
+							commons-logging
+						</Embed-Dependency>
+					</instructions>
+				</configuration>
+			</plugin>
+
+
+
+		</plugins>
+	</build>
+
+</project>
