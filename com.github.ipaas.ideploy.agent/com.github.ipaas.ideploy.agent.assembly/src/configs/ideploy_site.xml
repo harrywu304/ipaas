@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+	<url>http://repos.ideploy.ipaas/</url>
+	<bundles>  <!-- agent使用到的bundle -->
+		<url>bundles</url> <!-- bundle 下载的地址 -->
+		<!-- thirt bundle -->
+		<bundle>  <!-- 系统通过 bundle的groupId,artifactId和version下载 bundle,目录结构与maven库一致, agent通过symbolicName判断是否存在需要的bundle -->
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
+			<symbolicName>org.apache.commons.lang</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>commons-pool</groupId>
+			<artifactId>commons-pool</artifactId>
+			<version>1.5.4</version>
+			<symbolicName>org.apache.commons.pool</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.5.0</version>
+			<symbolicName>jackson-core-asl</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.5.0</version>
+			<symbolicName>jackson-mapper-asl</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.bundlerepository</artifactId>
+			<version>1.6.6</version>
+			<symbolicName>org.apache.felix.bundlerepository</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.configadmin</artifactId>
+			<version>1.4.0</version>
+			<symbolicName>org.apache.felix.configadmin</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.fileinstall</artifactId>
+			<version>3.2.4</version>
+			<symbolicName>org.apache.felix.fileinstall</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+			<version>1.4.0</version>
+			<symbolicName>org.osgi.compendium</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>org.ops4j.pax.logging</groupId>
+			<artifactId>pax-logging-api</artifactId>
+			<version>1.5.3</version>
+			<symbolicName>org.ops4j.pax.logging.pax-logging-api</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>org.ops4j.pax.logging</groupId>
+			<artifactId>pax-logging-service</artifactId>
+			<version>1.5.3</version>
+			<symbolicName>org.ops4j.pax.logging.pax-logging-service
+			</symbolicName>
+		</bundle>
+
+		<!-- fw bundle -->
+		<bundle>
+			<groupId>com.github.ipaas.ifw</groupId>
+			<artifactId>com.github.ipaas.ifw.util</artifactId>
+			<version>2.0.2</version>
+			<symbolicName>com.github.ipaas.ifw.util</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>com.github.ipaas.ifw</groupId>
+			<artifactId>com.github.ipaas.ifw.core</artifactId>
+			<version>2.0.2</version>
+			<symbolicName>com.github.ipaas.ifw.core</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>com.github.ipaas.ifw</groupId>
+			<artifactId>com.github.ipaas.ifw.mq</artifactId>
+			<version>2.0.2</version>
+			<symbolicName>com.github.ipaas.ifw.mq</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>com.github.ipaas.ifw</groupId>
+			<artifactId>com.github.ipaas.ifw.quartz</artifactId>
+			<version>2.0.2</version>
+			<symbolicName>com.github.ipaas.ifw.quartz</symbolicName>
+		</bundle>
+
+
+
+		<!-- app bundle -->
+		<bundle>
+			<groupId>com.github.ipaas.ideploy</groupId>
+			<artifactId>com.github.ipaas.ideploy.filemonitor</artifactId>
+			<version>1.0</version>
+			<symbolicName>com.github.ipaas.ideploy.filemonitor</symbolicName>
+		</bundle>
+
+
+		<bundle>
+			<groupId>com.github.ipaas.ideploy</groupId>
+			<artifactId>com.github.ipaas.ideploy.bundlelog</artifactId>
+			<version>1.0</version>
+			<symbolicName>com.github.ipaas.ideploy.bundlelog</symbolicName>
+		</bundle>
+
+
+
+		<bundle>
+			<groupId>com.github.ipaas.ideploy</groupId>
+			<artifactId>com.github.ipaas.ideploy.agent.ice</artifactId>
+			<version>1.0</version>
+			<symbolicName>com.github.ipaas.ideploy.agent.ice</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>com.github.ipaas.ideploy</groupId>
+			<artifactId>com.github.ipaas.ideploy.agent.jvm</artifactId>
+			<version>1.0</version>
+			<symbolicName>com.github.ipaas.ideploy.agent.jvm</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>com.github.ipaas.ideploy</groupId>
+			<artifactId>com.github.ipaas.ideploy.agent.mq</artifactId>
+			<version>1.0</version>
+			<symbolicName>com.github.ipaas.ideploy.agent.mq</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>com.github.ipaas.ideploy</groupId>
+			<artifactId>com.github.ipaas.ideploy.agent.resin</artifactId>
+			<version>1.0</version>
+			<symbolicName>com.github.ipaas.ideploy.agent.resin</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>com.github.ipaas.ideploy</groupId>
+			<artifactId>com.github.ipaas.ideploy.agent.usability</artifactId>
+			<version>1.0</version>
+			<symbolicName>com.github.ipaas.ideploy.agent.usability</symbolicName>
+		</bundle>
+
+
+
+	</bundles>
+	<configs>
+		<config>
+			<pid>org.ops4j.pax.logging</pid>  <!-- 日志对应的配置文件 -->
+			<updateTime>2012-07-23 12:15:12</updateTime>
+			<properties>
+				<log4j.appender.stdout>org.apache.log4j.ConsoleAppender
+				</log4j.appender.stdout>
+				<log4j.rootLogger>debug, stdout, fileout</log4j.rootLogger>
+				<log4j.appender.fileout.layout.ConversionPattern>%d (%F:%L) %-5p -
+					%c %x - %m%n</log4j.appender.fileout.layout.ConversionPattern>
+				<log4j.appender.fileout.layout>org.apache.log4j.PatternLayout
+				</log4j.appender.fileout.layout>
+				<log4j.appender.fileout>org.apache.log4j.DailyRollingFileAppender
+				</log4j.appender.fileout>
+				<log4j.appender.fileout.File>/www/applog/agent.ideploy.hk.ty/felix.log
+				</log4j.appender.fileout.File>
+				<log4j.appender.fileout.encoding>utf-8
+				</log4j.appender.fileout.encoding>
+				<log4j.appender.stdout.layout.ConversionPattern>%d (%F:%L) %-5p - %c
+					%x - %m%n</log4j.appender.stdout.layout.ConversionPattern>
+				<log4j.appender.stdout.layout>org.apache.log4j.PatternLayout
+				</log4j.appender.stdout.layout>
+			</properties>
+		</config>
+		<config>
+			<pid>com.github.ipaas.ideploy.agent.service</pid>   <!-- 与对应bundle的symbolicName 一致 -->
+			<updateTime>2012-07-31 12:15:12</updateTime> <!-- 更新时间,如果更新时间大于 agent端的更新时间,则系统更新这个bundle的配置 -->
+			<properties>
+				<mq.appIds>ideploy</mq.appIds>  <!-- mq的appid -->
+				<mq.connect_timeout>1000</mq.connect_timeout>
+				<mq.operate_timeout>5000</mq.operate_timeout>
+				<mq.maximum_connections>1</mq.maximum_connections>
+				<mq.maximum_active>500</mq.maximum_active>
+				<mq.idle_timeout>60000</mq.idle_timeout>
+				<mq.ideploy.hosts>mq0.ideploy.hk.ty:61616,mq1.ideploy.hk.ty:61616</mq.ideploy.hosts>  <!-- mq appid对应的地址和端口 -->
+			</properties>
+		</config>
+		<config>
+			<pid>com.github.ipaas.ideploy.agent.jvm</pid>
+			<updateTime>2012-07-31 12:15:12</updateTime>
+			<properties>
+				<port>11010,11020,11050</port> <!-- jvm的监控端口 -->
+				<appId>ideploy</appId>  <!-- jvm信息发送的appid -->
+				<cronSche>30 * * * * ?</cronSche> <!-- 调度 表达式 -->
+				<status>start</status> <!--调度的状态 start 表示启用,stop表示停用 -->
+			</properties>
+		</config>
+		<config>
+			<pid>com.github.ipaas.ideploy.agent.ice</pid>
+			<updateTime>2012-07-31 12:15:12</updateTime>
+			<properties>
+				<port>11020</port>
+				<appId>ideploy</appId>
+				<cronSche>30 * * * * ?</cronSche>
+				<status>start</status>
+			</properties>
+		</config>
+		<config>
+			<pid>com.github.ipaas.ideploy.agent.mq</pid>
+			<updateTime>2012-07-31 12:15:12</updateTime>
+			<properties>
+				<port>11030</port>
+				<appId>ideploy</appId>
+				<cronSche>30 * * * * ?</cronSche>
+				<status>start</status>
+			</properties>
+		</config>
+		<config>
+			<pid>com.github.ipaas.ideploy.agent.resin</pid>
+			<updateTime>2012-07-31 12:15:12</updateTime>
+			<properties>
+				<port>11010</port>
+				<appId>ideploy</appId>
+				<cronSche>30 * * * * ?</cronSche>
+				<status>start</status>
+			</properties>
+		</config>
+		<config>
+			<pid>com.github.ipaas.ideploy.agent.usability</pid>
+			<updateTime>2012-07-31 12:15:12</updateTime>
+			<properties>
+				<port>11010,11020,11050</port>
+				<appId>ideploy</appId>
+				<cronSche>30 * * * * ?</cronSche>
+				<status>start</status>
+			</properties>
+		</config>
+	</configs>
+</site>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+	<url>http://nexus.ideploy.com/</url>
+	<bundles>
+		<url>content/groups/public</url>
+		<!-- thirt bundle -->
+		<bundle>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.4</version>
+			<symbolicName>org.apache.commons.lang</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>commons-pool</groupId>
+			<artifactId>commons-pool</artifactId>
+			<version>1.5.4</version>
+			<symbolicName>org.apache.commons.pool</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.5.0</version>
+			<symbolicName>jackson-core-asl</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.5.0</version>
+			<symbolicName>jackson-mapper-asl</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.bundlerepository</artifactId>
+			<version>1.6.6</version>
+			<symbolicName>org.apache.felix.bundlerepository</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.configadmin</artifactId>
+			<version>1.4.0</version>
+			<symbolicName>org.apache.felix.configadmin</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.fileinstall</artifactId>
+			<version>3.2.4</version>
+			<symbolicName>org.apache.felix.fileinstall</symbolicName>
+		</bundle>
+
+		<bundle>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+			<version>1.4.0</version>
+			<symbolicName>org.osgi.compendium</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>org.ops4j.pax.logging</groupId>
+			<artifactId>pax-logging-api</artifactId>
+			<version>1.5.3</version>
+			<symbolicName>org.ops4j.pax.logging.pax-logging-api</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>org.ops4j.pax.logging</groupId>
+			<artifactId>pax-logging-service</artifactId>
+			<version>1.5.3</version>
+			<symbolicName>org.ops4j.pax.logging.pax-logging-service
+			</symbolicName>
+		</bundle>
+
+		<!-- fw bundle -->
+		<bundle>
+			<groupId>com.github.ipaas.ifw</groupId>
+			<artifactId>com.github.ipaas.ifw.util</artifactId>
+			<version>0.0.2</version>
+			<symbolicName>com.github.ipaas.ifw.util</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>com.github.ipaas.ifw</groupId>
+			<artifactId>com.github.ipaas.ifw.core</artifactId>
+			<version>0.0.2</version>
+			<symbolicName>com.github.ipaas.ifw.core</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>com.github.ipaas.ifw</groupId>
+			<artifactId>com.github.ipaas.ifw.jdbc</artifactId>
+			<version>0.0.2</version>
+			<symbolicName>com.github.ipaas.ifw.jdbc</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>com.github.ipaas.ifw</groupId>
+			<artifactId>com.github.ipaas.ifw.mq</artifactId>
+			<version>2.0</version>
+			<symbolicName>com.github.ipaas.ifw.mq</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>com.github.ipaas.ifw</groupId>
+			<artifactId>com.github.ipaas.ifw.quartz</artifactId>
+			<version>2.0</version>
+			<symbolicName>com.github.ipaas.ifw.quartz</symbolicName>
+		</bundle>
+		<bundle>
+			<groupId>com.github.ipaas.ifw</groupId>
+			<artifactId>com.github.ipaas.ifw.cache</artifactId>
+			<version>0.0.2</version>
+			<symbolicName>com.github.ipaas.ifw.cache</symbolicName>
+		</bundle>
+
+
+		<!-- app bundle -->
+		<bundle>
+			<groupId>com.github.ipaas.ideploy</groupId>
+			<artifactId>com.github.ipaas.ideploy.filemonitor</artifactId>
+			<version>1.0</version>
+			<symbolicName>com.github.ipaas.ideploy.filemonitor</symbolicName>
+		</bundle>
+
+
+	</bundles>
+	<configs>
+		<config>
+			<pid>org.ops4j.pax.logging</pid>
+			<updateTime>2012-07-23 12:15:12</updateTime>
+			<properties>
+				<log4j.appender.stdout>org.apache.log4j.ConsoleAppender
+				</log4j.appender.stdout>
+				<log4j.rootLogger>debug, stdout, fileout</log4j.rootLogger>
+				<log4j.appender.fileout.layout.ConversionPattern>%d (%F:%L) %-5p -
+					%c %x - %m%n</log4j.appender.fileout.layout.ConversionPattern>
+				<log4j.appender.fileout.layout>org.apache.log4j.PatternLayout
+				</log4j.appender.fileout.layout>
+				<log4j.appender.fileout>org.apache.log4j.DailyRollingFileAppender
+				</log4j.appender.fileout>
+				<log4j.appender.fileout.File>log/felix.log
+				</log4j.appender.fileout.File>
+				<log4j.appender.fileout.encoding>utf-8
+				</log4j.appender.fileout.encoding>
+				<log4j.appender.stdout.layout.ConversionPattern>%d (%F:%L) %-5p - %c
+					%x - %m%n</log4j.appender.stdout.layout.ConversionPattern>
+				<log4j.appender.stdout.layout>org.apache.log4j.PatternLayout
+				</log4j.appender.stdout.layout>
+			</properties>
+		</config>
+	</configs>
+</site>

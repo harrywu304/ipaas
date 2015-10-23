@@ -1,0 +1,53 @@
+#!/bin/sh
+bin=`dirname $0`
+cd $bin && cd ..
+source /etc/profile
+servername='mqtest-timerstartup'
+cd /www/agent/agent.ideploy.ipaas
+mainclass='com.github.ipaas.ideploy.agent.Activator'
+varpid=`ps -ef|grep $mainclass |grep -v grep|awk '{print $2}'`
+libpath=`ls ./install/*.jar | tr '\n' ':'`
+distpath=`ls ./bundle/*.jar | tr '\n' ':'`
+dynpath=`ls ./dynLib/*.jar | tr '\n' ':'`
+classpath='./config/:'${libpath}:${distpath}：${dynpath}
+stdlog='/www/applog/mqtest/console.log'
+jvmarg='-XX:+HeapDumpOnOutOfMemoryError -Xms12m -Xmx16m 
+-Dcom.sun.management.jmxremote.port=11050 -Djava.rmi.server.hostname=127.0.0.1'
+fullcmd="java $jvmarg -classpath ${classpath} ${mainclass} > $stdlog 2>&1 &"
+
+case "$1" in
+restart)
+	#restart action
+	if test "x$varpid" != "x"
+	then
+	  kill -9 $varpid
+	  sleep 1
+	fi
+	eval $fullcmd
+	echo "$servername restarted" 
+	;;
+stop)
+	#stop action
+	if test "x$varpid" = "x"
+	then
+	  echo "fail. No $servername can be stopped."
+	  exit
+	fi
+	kill -9 $varpid 
+	echo "$servername stopped"
+	;; 
+start)
+	#start action, default option
+	if test "x$varpid" != "x"
+	then
+	  echo "fail. $servername is running already."
+	  exit
+	fi
+	eval $fullcmd
+	echo "$servername started"
+	;;
+*)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+	;;       
+esac      
