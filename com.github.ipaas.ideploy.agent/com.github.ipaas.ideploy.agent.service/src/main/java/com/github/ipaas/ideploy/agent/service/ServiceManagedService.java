@@ -30,19 +30,19 @@ public class ServiceManagedService implements ManagedService {
 	private static Logger logger = LoggerFactory
 			.getLogger(ServiceManagedService.class);
 
-	private static Map<String,Object> DEFAULT_PARAM;
-	static{
-		DEFAULT_PARAM = new HashMap<String,Object>();
-		DEFAULT_PARAM.put("appIds", "ideploy,crs");
-		DEFAULT_PARAM.put("connect_timeout", "1000");
-		DEFAULT_PARAM.put("operate_timeout", "5000");
-		DEFAULT_PARAM.put("maximum_connections", "10");
-		DEFAULT_PARAM.put("maximum_active", "500");
-		DEFAULT_PARAM.put("idle_timeout", "60000");
-		DEFAULT_PARAM.put("listen_thread_pool_max_size", "5");
-		DEFAULT_PARAM.put("serverUrl", "192.168.1.103:61616");
-
-	}
+//	private static Map<String,Object> DEFAULT_PARAM;
+//	static{
+//		DEFAULT_PARAM = new HashMap<String,Object>();
+//		DEFAULT_PARAM.put("appIds", "ideploy,crs");
+//		DEFAULT_PARAM.put("connect_timeout", "1000");
+//		DEFAULT_PARAM.put("operate_timeout", "5000");
+//		DEFAULT_PARAM.put("maximum_connections", "10");
+//		DEFAULT_PARAM.put("maximum_active", "500");
+//		DEFAULT_PARAM.put("idle_timeout", "60000");
+//		DEFAULT_PARAM.put("listen_thread_pool_max_size", "5");
+//		DEFAULT_PARAM.put("serverUrl", "192.168.1.103:61616");
+//
+//	}
 
 	/**
 	 * 上下文环境
@@ -65,10 +65,10 @@ public class ServiceManagedService implements ManagedService {
 	 * @param context
 	 */
 	public ServiceManagedService(BundleContext context) {
-		System.out.println("ServiceManagedService   init    "+  JsonUtil.toJson(DEFAULT_PARAM));
+		//System.out.println("ServiceManagedService   init    "+  JsonUtil.toJson(DEFAULT_PARAM));
 		this.context = context;
 		// 设置消费者
-		setConsumer(DEFAULT_PARAM);
+		//setConsumer(DEFAULT_PARAM);
 
 		// 设置调度
 		//setScheduler(DEFAULT_PARAM);
@@ -271,7 +271,7 @@ public class ServiceManagedService implements ManagedService {
 		stopConsumer();
 
 		// 注册mqservice
-		String[] appIds = {"ideploy","crs"};
+		String[] appIds = {"ideploy"};
 		System.out.println("appIds------->    "+appIds);
 		// 设置参数
 		MqServiceManager.setParams(maps);
@@ -295,15 +295,11 @@ public class ServiceManagedService implements ManagedService {
 					mqListenServices[i] = new FwMqListenService(appId, maps);
 
 					// queue ideploy.agent_<ip> 运行管理的queue
-					if (!appId.equals(Constant.CRS_APP_ID)) {// crs
-						// Mq跟ideploy监控Mq分离,crs
-						// Mq 不监听agent队列
 						String queueName = queueNamePrex
 								+ IPUtil.getLocalIP(true);
 						logger.debug(" begin to  listenSyncQueue: " + queueName);
 						mqListenServices[i].listenSyncQueue(queueName,
 								new AgentMessageHandler(context));
-					}
 				} catch (Exception ex) {
 					logger.error(ex.getMessage(), ex);
 				}

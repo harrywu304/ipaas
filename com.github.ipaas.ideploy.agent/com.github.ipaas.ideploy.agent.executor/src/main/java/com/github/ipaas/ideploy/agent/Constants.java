@@ -33,10 +33,15 @@ public class Constants {
 		return v;
 	}
 
-	public static String MQ_SEND_SERVICE = "mqSendService";
+//	public static String MQ_SEND_SERVICE = "mqSendService";
+//
+//	public static String MQ_LinsenSERVICE = "mqListenService";
 
-	public static String MQ_LinsenSERVICE = "mqListenService";
+	/**
+	 * appId
+	 */
 
+	public static final String CRS_APP_ID = getProperty("APP_ID");
 	/**
 	 * Controller接收Agent消息的MQ队列
 	 */

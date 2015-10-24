@@ -180,12 +180,11 @@
 		<module>com.github.ipaas.ifw.mq</module>
 		<module>com.github.ipaas.ifw.util</module>
 		<module>com.github.ipaas.ifw.unitest</module>
-
 		<module>com.github.ipaas.ifw.quartz</module>
-
 		<module>com.github.ipaas.ifw.server.ice</module>
 		<module>com.github.ipaas.ifw.server.mq.consumer</module>
-		<!-- <module>com.github.ipaas.ifw.demo</module> -->
+		<module>com.github.ipaas.ifw.test.web</module>
+		<module>com.github.ipaas.ifw.test.iceservice</module>
 	</modules>
 
 	<distributionManagement>

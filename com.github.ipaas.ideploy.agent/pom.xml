@@ -11,6 +11,7 @@
 	<url>http://maven.apache.org</url>
 
 	<modules>
+		<module>com.github.ipaas.ideploy.agent.assembly</module>
 		<module>com.github.ipaas.ideploy.agent.parent</module>
 		<module>com.github.ipaas.ideploy.filemonitor</module>
 		<module>com.github.ipaas.ideploy.agent.service</module>

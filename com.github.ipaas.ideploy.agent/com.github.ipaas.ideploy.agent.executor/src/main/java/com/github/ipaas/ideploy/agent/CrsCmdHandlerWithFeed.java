@@ -6,6 +6,7 @@ package com.github.ipaas.ideploy.agent;
 
 import java.util.Map;
 
+import com.github.ipaas.ifw.mq.MqServiceManager;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +42,8 @@ public abstract class CrsCmdHandlerWithFeed {
 			agentFeed.setErrMsg(e.getMessage());
 			logger.error(e.getMessage(), e);
 		}
-		MqSendService mqSendService = ServiceFactory.getService(Constants.MQ_SEND_SERVICE);
+		MqSendService mqSendService = MqServiceManager
+				.getMqSendService(Constants.CRS_APP_ID);
 		Message message = mqSendService.createMessage();
 		message.setContent(JsonUtil.toJson(agentFeed));
 		mqSendService.sendQueue(Constants.CRS_CTRLER_AGENT_QUEUE, message);

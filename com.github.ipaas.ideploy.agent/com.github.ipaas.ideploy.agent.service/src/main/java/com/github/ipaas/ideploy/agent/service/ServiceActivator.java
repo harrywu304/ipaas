@@ -72,14 +72,14 @@ public class ServiceActivator implements BundleActivator , ServiceListener {
 	
 	@Override
 	public void serviceChanged(ServiceEvent event) {
-		logger.debug(event.getServiceReference()+"    serviceChanged");
+		logger.debug(" #######################   serviceChanged"+  event.getServiceReference());
 		// TODO Auto-generated method stub
 		try {
 			Object obj = mContext.getService(event.getServiceReference());
-			logger.debug(obj.getClass().getName()+"    updateConfig:   "+(obj instanceof AgentMonitor));
-			if(obj instanceof AgentMonitor){
+			logger.debug(obj.getClass().getName()+"    serviceChanged:   ");
+			//if(obj instanceof AgentMonitor){
 				updateConfig(mContext);
-			}
+			//}
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);

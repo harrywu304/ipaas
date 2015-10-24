@@ -13,7 +13,6 @@ public interface Constant {
 	//参数列表
 	public final static String APP_ID = "appid";
 	
-	public final static String CRS_APP_ID="crs";
 
 	public final static String PARAM_IP = "ip";
 	public final static String PARAM_PORT = "port";

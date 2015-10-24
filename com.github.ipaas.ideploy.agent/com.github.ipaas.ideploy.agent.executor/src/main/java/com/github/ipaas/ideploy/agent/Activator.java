@@ -11,6 +11,7 @@
 
 package com.github.ipaas.ideploy.agent;
 
+import com.github.ipaas.ifw.mq.MqServiceManager;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
@@ -59,7 +60,7 @@ public class Activator implements BundleActivator {
     public void run(BundleContext bundleContext) throws Exception {
         String localIp = IPUtil.getLocalIP(true);
         logger.info("localIp:" + localIp);
-        mqListenService = ServiceFactory.getService(Constants.MQ_LinsenSERVICE);
+        mqListenService = MqServiceManager.getMqListenService(Constants.CRS_APP_ID);
         mqListenService.listenQueue(Constants.AGENT_CTRL_QUEUE + localIp, new MessageHandlerImpl(bundleContext));
     }
 
