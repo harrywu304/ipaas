@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- the proxool configuration can be embedded within your own application's. Anything outside the "proxool" tag is ignored. -->
+<something-else-entirely>
+	<!-- appId fw_demo -->
+	<proxool>
+		<alias>ideploy_m0</alias>
+		<driver-url>jdbc:mysql://192.168.1.104:3306/ideploy</driver-url>
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<driver-properties>
+			<property name="user" value="root" />
+			<property name="password" value="123456" />
+			<property name="connectTimeout" value="1000" />
+			<property name="useUnicode" value="true" />
+			<property name="characterEncoding" value="utf-8" />
+			<property name="zeroDateTimeBehavior" value="convertToNull" />
+		</driver-properties>
+		<maximum-connection-count>1000</maximum-connection-count>
+		<minimum-connection-count>3</minimum-connection-count>
+		<maximum-active-time>300000</maximum-active-time>
+		<maximum-connection-lifetime>300000</maximum-connection-lifetime>
+		<house-keeping-sleep-time>13000</house-keeping-sleep-time>
+		<house-keeping-test-sql>select 0</house-keeping-test-sql>
+
+	</proxool>
+	
+	<proxool>
+		<alias>ideploy_m0_s0</alias>
+		<driver-url>jdbc:mysql://192.168.1.104:3306/ideploy</driver-url>
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		<driver-properties>
+			<property name="user" value="root" />
+			<property name="password" value="123456" />
+			<property name="connectTimeout" value="1000" />
+			<property name="useUnicode" value="true" />
+			<property name="characterEncoding" value="utf-8" />
+			<property name="zeroDateTimeBehavior" value="convertToNull" />
+		</driver-properties>
+		<maximum-connection-count>1000</maximum-connection-count>
+		<minimum-connection-count>3</minimum-connection-count>
+		<maximum-active-time>300000</maximum-active-time>
+		<maximum-connection-lifetime>300000</maximum-connection-lifetime>
+		<house-keeping-sleep-time>13000</house-keeping-sleep-time>
+		<house-keeping-test-sql>select 0</house-keeping-test-sql>
+
+	</proxool>
+	 
+  
+</something-else-entirely>

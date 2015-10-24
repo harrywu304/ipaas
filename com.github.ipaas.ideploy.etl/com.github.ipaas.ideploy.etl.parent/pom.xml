@@ -1,0 +1,250 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.github.ipaas.ideploy</groupId>
+	<artifactId>com.github.ipaas.ideploy.etl.parent</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<name>com.github.ipaas.ideploy.etl.parent</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<ifw.version>0.0.2</ifw.version>
+		<ifw.groupId>com.github.ipaas.ifw</ifw.groupId>
+		<ideploy.etl.versoin>1.0.0</ideploy.etl.versoin>
+	</properties>
+
+	<dependencies>
+
+		<!-- ifw -->
+		<dependency>
+			<groupId>${ifw.groupId}</groupId>
+			<artifactId>com.github.ipaas.ifw.core</artifactId>
+			<version>${ifw.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${ifw.groupId}</groupId>
+			<artifactId>com.github.ipaas.ifw.quartz</artifactId>
+			<version>${ifw.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${ifw.groupId}</groupId>
+			<artifactId>com.github.ipaas.ifw.mq</artifactId>
+			<version>${ifw.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${ifw.groupId}</groupId>
+			<artifactId>com.github.ipaas.ifw.jdbc</artifactId>
+			<version>${ifw.version}</version>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>${ifw.groupId}</groupId>
+			<artifactId>com.github.ipaas.ifw.util</artifactId>
+			<version>${ifw.version}</version>
+		</dependency>
+
+
+		<!-- osgi -->
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>1.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
+
+		<!-- 单无测试 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>mockit</groupId>
+			<artifactId>jmockit</artifactId>
+			<version>0.999.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>2.4.8</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+
+
+	</dependencies>
+
+
+	<build>
+
+		<!-- 可选的plugins -->
+		<pluginManagement>
+			<plugins>
+				<!-- 打包的plugin -->
+				<!-- !com.sun.jdmk.comm 如 an OSGI bundle needs access to internal sun.security 
+					classes. The Apache Felix console gives errors for the OSGI bundle 导入org.osgi.framework包, 
+					org.apache.log4j;provider=paxlogging 表示log4j日志,使用paxloggin的bundle org.apache.log4j.helpers;resolution:=optional;provider=paxlogging, 
+					表示log4j.helpers日志,使用paxloggin的bundle org.apache.log4j.spi;resolution:=optional;provider=paxlogging, 
+					表示log4j.spi日志,使用paxloggin的bundle org.slf4j;resolution:=optional;provider=paxlogging, 
+					表示slf4j日志,使用paxloggin的bundle org.slf4j.impl;resolution:=optional;provider=paxlogging, 
+					表示slf4j.impl日志,使用paxloggin的bundle *;resolution:=optional 表示自动加载需要的包 -->
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>2.3.7</version>
+					<extensions>true</extensions>
+					<configuration>
+						<instructions>
+							<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+							<Bundle-Name>${project.artifactId}</Bundle-Name>
+							<Bundle-Vendor>ideploy</Bundle-Vendor>
+							<Import-Package>
+								!com.sun.jdmk.comm,
+								org.osgi.framework,
+								org.apache.log4j;provider=paxlogging,
+								org.apache.commons.logging;provider=paxlogging,
+								org.apache.log4j.helpers;resolution:=optional;provider=paxlogging,
+								org.apache.log4j.spi;resolution:=optional;provider=paxlogging,
+								org.slf4j;resolution:=optional;provider=paxlogging,
+								org.slf4j.impl;resolution:=optional;provider=paxlogging,
+								*;resolution:=optional
+							</Import-Package>
+						</instructions>
+					</configuration>
+				</plugin>
+
+				<!-- 测试 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.8</version>
+				</plugin>
+
+				<!-- assembly -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.3</version>
+					<!-- <configuration> <descriptors> <descriptor>src/main/assembly/assembly.xml</descriptor> 
+						</descriptors> </configuration> -->
+					<executions>
+						<execution>
+							<id>make-assembly</id>
+							<phase>package</phase>
+							<goals>
+								<goal>single</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+
+			<!-- 使用jdk1.7 compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+
+			<!-- 将源码包发布到了Maven仓库 -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<!-- 将Javadoc包发布到Maven仓库 -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.8</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<!-- 站点发布 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.0</version>
+				<!-- 站点中文支持 -->
+				<configuration>
+					<locales>zh_CN</locales>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+	<!-- 发布管理 -->
+	<distributionManagement>
+		<repository>
+			<id>my_nexus</id>
+			<name>release</name>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>my_nexus</id>
+			<name>snapshots</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	
+	
+</project>

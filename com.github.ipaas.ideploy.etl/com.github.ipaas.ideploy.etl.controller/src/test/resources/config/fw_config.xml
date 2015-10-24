@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<properties>
+	<!-- 配置文件内容默认每15s会自动重新加载，但是无法保证相关对象和资源会被注销和重新创建 -->
+
+	<app_properties>
+		<bundle_update_site>http://repos.ideploy.ipaas/etlconfigs/{0}/ideploy_site.xml
+		</bundle_update_site>
+		<server_install_url>http://repos.ideploy.ipaas/install/ideploy_etl_install.sh
+		</server_install_url>
+		<server_download_path>/www/app/ideploy_etl_install</server_download_path>
+		<server_version>1.0.9</server_version>
+		<must_bundles>
+			org.apache.felix.framework,
+			org.apache.commons.lang,
+			org.apache.commons.pool,
+			jackson-core-asl,
+			jackson-mapper-asl,
+			org.apache.felix.bundlerepository,
+			org.apache.felix.configadmin,
+			org.apache.felix.fileinstall,
+			org.osgi.compendium,
+			org.ops4j.pax.logging.pax-logging-api,
+			org.ops4j.pax.logging.pax-logging-service,
+			com.github.ipaas.ifw.util,
+			com.github.ipaas.ifw.core,
+			com.github.ipaas.ifw.mq,
+			com.github.ipaas.ifw.quartz,
+			com.github.ipaas.ifw.jdbc,
+			com.github.ipaas.ifw.context.spring,
+			javax.mail,
+			com.github.ipaas.ifw.email,
+			com.github.ipaas.ifw.sms,
+			com.github.ipaas.ideploy.filemonitor
+		</must_bundles>
+	</app_properties>
+
+	<system_properties>
+		<service.config>./config/fw_context.xml</service.config>
+		<service.provider>spring</service.provider>
+		<root_cache_url></root_cache_url>
+	</system_properties>
+
+
+	<!-- 数据库连接服务 -->
+	<dbConnectService>
+		<!-- 数据库连接池配置，值为空默认查找 /proxool.xml -->
+		<proxoolConfig>./config/proxool.xml</proxoolConfig>
+		<!-- 注意：写节点配置是次序有关的，一旦配置，有数据写入了，结点间的次序就不能改变，否则就会出现找不到数据的情况 -->
+		<!-- 映射关系语法: ';'号分从库节点关系标记, ':'号节点主从库(master-slave)关系标记, ','号分数据库主从(master-slave)组标记 -->
+		<!-- 例子: m0:s0;s1;s2,m1:s0;s1,m2:s0;s1;s2 m0 s0 ..... 是proxool连接池别名 -->
+		<dbServerMapping>ideploy_m0:ideploy_m0_s0</dbServerMapping>
+		<!-- 数据库服务器分组, 组中节点定位算法: 取模(mod), 一致性哈希(consistent-hash) -->
+		<item_locate_algorithm>consistent-hash</item_locate_algorithm>
+	</dbConnectService>
+
+	<!-- 数据库访问服务 -->
+	<dbAccessService>
+		<!-- 设置扩展节点时的映射，格式为：fw_demo_m1:fw_demo_m0,fw_demo_m2:fw_demo_m0 -->
+		<!-- 此属性的作用为减少了增加某个数据库节点时对业务的影响，例如 fw_demo_m1:fw_demo_m0，说明 访问fw_demo_m1时如果没有数据，则访问fw_demo_m0。此属性可以不用配置 -->
+		<scaleoutMapping>ideploy_m0:ideploy_m0_s0</scaleoutMapping>
+		<!--配置引用的数据库连接服务 -->
+		<dbConnectService> dbConnectService</dbConnectService>
+	</dbAccessService>
+
+	<!-- MQ服务 -->
+	<mqSendService>
+
+		<!-- url语法: ','号分节点标记, ':'号节点分ip与端口标记 -->
+		<serverUrl>192.168.1.103:61616</serverUrl>
+		<!-- 连接超时时间，单位毫秒，默认1秒 -->
+		<connectTimeout>1000</connectTimeout>
+		<!-- 操作超时时间，单位毫秒，默认5秒 -->
+		<operateTimeout>5000</operateTimeout>
+		<!-- 连接池尺寸，默认5个 -->
+		<maximumConnections>5</maximumConnections>
+		<!-- 每个连接的最大Session数，默认500个 -->
+		<maximumActive>500</maximumActive>
+		<!-- 连接的闲置超时，单位毫秒，默认1分钟 -->
+		<idleTimeout>60000</idleTimeout>
+		<!-- 消息处理线程池最大值，每个queue或topic一个独立线程池，默认是100 -->
+		<listenThreadPoolMaxSize>1</listenThreadPoolMaxSize>
+
+	</mqSendService>
+
+
+	<!-- MQ服务 -->
+	<mqListenService>
+
+		<!-- url语法: ','号分节点标记, ':'号节点分ip与端口标记 -->
+		<serverUrl>192.168.1.103:61616</serverUrl>
+		<!-- 连接超时时间，单位毫秒，默认1秒 -->
+		<connectTimeout>1000</connectTimeout>
+		<!-- 操作超时时间，单位毫秒，默认5秒 -->
+		<operateTimeout>5000</operateTimeout>
+		<!-- 连接池尺寸，默认5个 -->
+		<maximumConnections>5</maximumConnections>
+		<!-- 每个连接的最大Session数，默认500个 -->
+		<maximumActive>500</maximumActive>
+		<!-- 连接的闲置超时，单位毫秒，默认1分钟 -->
+		<idleTimeout>60000</idleTimeout>
+		<!-- 消息处理线程池最大值，每个queue或topic一个独立线程池，默认是100 -->
+		<listenThreadPoolMaxSize>1</listenThreadPoolMaxSize>
+	</mqListenService>
+
+</properties>

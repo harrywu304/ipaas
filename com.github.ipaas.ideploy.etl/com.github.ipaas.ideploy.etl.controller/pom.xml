@@ -1,0 +1,111 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+
+	<parent>
+		<groupId>com.github.ipaas.ideploy</groupId>
+		<artifactId>com.github.ipaas.ideploy.etl.parent</artifactId>
+		<relativePath>../com.github.ipaas.ideploy.etl.parent</relativePath>
+		<version>1.0.0</version>
+	</parent>
+
+
+	<artifactId>com.github.ipaas.ideploy.etl.controller</artifactId>
+	<packaging>bundle</packaging>
+
+	<dependencies>
+
+
+		<dependency>
+			<groupId>com.github.ipaas.ideploy</groupId>
+			<artifactId>com.github.ipaas.ideploy.console</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>1.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.compendium</artifactId>
+			<version>1.4.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>javax.servlet</artifactId>
+					<groupId>org.apache.felix</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>org.osgi.foundation</artifactId>
+					<groupId>org.apache.felix</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jmockit</groupId>
+			<artifactId>jmockit</artifactId>
+			<version>1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jmockit</groupId>
+			<artifactId>jmockit-coverage</artifactId>
+			<version>1.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<instructions>
+						<Embed-Dependency>httpclient;httpcore</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
+						<Bundle-Activator>
+							com.github.ipaas.ideploy.controller.Activator
+						</Bundle-Activator>
+						<Private-Package>
+							com.github.ipaas.ideploy.controller.*
+						</Private-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+
+
+			<!-- 使用jdk1.7 compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+
+</project>
