@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.github.ipaas.ideploy.plugin.feature_1.0.0.jar" id="com.github.ipaas.ideploy.plugin.feature" version="1.0.0">
+      <category name="ideploy.category"/>
+   </feature>
+   <category-def name="ideploy.category" label="New Category 1"/>
+</site>

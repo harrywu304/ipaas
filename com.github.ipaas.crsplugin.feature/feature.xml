@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.github.ipaas.ideploy.plugin.feature"
+      label="IdeployPlugin Feature"
+      version="1.0.0"
+      provider-name="Ipaas"
+      plugin="com.github.ipaas.ideploy.plugin">
+
+   <description url="http://repos.ideploy.ipaas/ideployplugins">
+      Ipaas Ideploy
+   </description>
+
+   <copyright url="http://repos.ideploy.ipaas/ideployplugins">
+    Ipaas Ideploy
+   </copyright>
+
+   <license url="http://repos.ideploy.ipaas/ideployplugins">
+      由云计算与大数据部应用架构团队设计开发,请勿外传.
+   </license>
+
+   <url>
+      <update label="Ipaas Ideploy Update Site"  url="http://repos.ideploy.ipaas/ideployplugins"/>
+   </url>
+
+   <plugin
+         id="com.github.ipaas.ideploy.plugin"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"/>
+
+</feature>

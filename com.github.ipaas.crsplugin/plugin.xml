@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+
+  <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Ipaas Ideploy plugin"
+            class="com.github.ipaas.ideploy.plugin.ui.preference.CrsPreferencePage"
+            id="com.github.ipaas.ideploy.plugin.ui.preference.CrsPreferencePage">
+      </page>
+   </extension>
+   
+   <!--
+     <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="CRS Plugin"
+            visible="true"
+            id="myPlugin.actionSet">
+         <action
+         		label="生成代码包"
+               icon="icons/sample.gif"
+               class="com.github.ipaas.ideploy.plugin.ui.popup.PopupAction"
+               tooltip="生成代码包"
+               toolbarPath="sampleGroup"
+               id="com.github.ipaas.ideploy.plugin.ui.popup.PopupAction">
+         </action>
+      </actionSet>
+   </extension>-->
+   
+        
+    <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+       adaptable="true" objectClass="org.eclipse.core.resources.IResource"
+            id="crsplugin.contribution">
+            
+          <menu
+               label="Ipaas Ideploy"
+                icon="icons/sample.gif"
+               id="crsplugin.contribution1">
+            <separator
+                  name="group1">
+            </separator>
+            <separator
+                  name="group2">
+            </separator>
+         </menu>
+          <visibility>
+            	<or><!--  菜单只对选中  项目 以及文件夹 可见-->
+            		<objectClass name="org.eclipse.core.resources.IProject"/>
+            		<objectClass name="org.eclipse.core.resources.IFolder"/>
+            	</or>
+          </visibility>
+            
+         <action
+               label="Ideploy Compare..."
+                menubarPath="crsplugin.contribution1/group1"
+               class="com.github.ipaas.ideploy.plugin.action.CompareAction"
+                enablesFor="1"
+               id="crs.compareAction">
+            
+         </action>
+         <action
+               label="Ideloy Complie..."
+                menubarPath="crsplugin.contribution1/group2"
+               	class="com.github.ipaas.ideploy.plugin.action.CompileAction"
+                enablesFor="1"
+               id="crs.compileAction">
+            
+         </action>
+      </objectContribution>
+   </extension>
+    
+   
+</plugin>
