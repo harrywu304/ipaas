@@ -87,4 +87,25 @@ public class Constants {
 	 */
 	public static final String FILE_ALTER_MONTOR_CLS = "com.ipaas.ideploy.mon.node.CRSFileAlterationMonitor";
 
+
+
+
+
+
+
+	/**
+	 * crs svn库位置
+	 */
+	public static String CRS_REPOS_ROOT = getProperty("CRS_REPOS_ROOT");
+
+	/**
+	 * crs svn用户名
+	 */
+	public static String SVN_NAME = getProperty("SVN_NAME");
+
+	/**
+	 * crs svn密码
+	 */
+	public static String SVN_PASS = getProperty("SVN_PASS");
+
 }

@@ -10,10 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.ipaas.ideploy.agent.CrsWebSvnUtil;
+import com.github.ipaas.ifw.util.FileUtil;
 import junit.framework.Assert;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.github.ipaas.ideploy.agent.handler.DownloadCodeHandler;
@@ -31,6 +35,28 @@ public class RollbackCodeHandlerTest {
 	public static final String ROLLBACKTO_VERSION = "test_20140710162244";
 	public static final String USING_VERSION = "test_20140722140850";
 	public static final String APP_NAME = "/rollback_test";
+
+	private static String contextPath = FileUtil.getFile("com.github.ipaas.ideploy.agent.executor/target/test-classes/").getAbsolutePath();
+
+	private CrsWebSvnUtil util;
+
+	private String testDataRoot = "/testData/";
+	@Before
+	public void setUp() throws Exception {
+
+		util = CrsWebSvnUtil.newInstance();
+		util.importDir(contextPath + testDataRoot + TEST_GROUP, TEST_GROUP);
+
+	}
+
+
+
+	@After
+	public void clean() throws Exception {
+		util.delete(TEST_GROUP);
+	}
+
+
 
 	/**
 	 * 回退测试,先下载 USING_VERSION版本到本地,然后回退到 ROLLBACKTO_VERSION 版本
